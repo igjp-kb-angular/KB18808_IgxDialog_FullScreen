@@ -1,0 +1,30 @@
+<main class="page" #fullscreenTarget>
+  <div class="actions">
+    <button type="button" igxButton="contained" (click)="toggleFullscreen()">
+      {{ isFullscreen() ? '全画面を終了' : '全画面表示' }}
+    </button>
+    @if (isFullscreen()) {
+      <button type="button" igxButton="outlined" (click)="dialog.open({ outlet })">ダイアログを開く</button>
+    }
+  </div>
+  <p>選択中: {{ fruit.value ?? '未選択' }}</p>
+  <!-- main を全画面化してもダイアログ・ドロップダウンが表示されるよう、オーバーレイを main 内に描画する -->
+  <div igxOverlayOutlet #outlet="overlay-outlet"></div>
+</main>
+
+<igx-dialog #dialog [closeOnOutsideSelect]="true">
+  <igx-dialog-title>フルーツを選択</igx-dialog-title>
+
+  <div class="dialog-content">
+    <igx-select [formControl]="fruit" [overlaySettings]="{ outlet }">
+      <label igxLabel>フルーツ</label>
+      @for (item of fruits; track item) {
+        <igx-select-item [value]="item">{{ item }}</igx-select-item>
+      }
+    </igx-select>
+  </div>
+
+  <div igxDialogActions>
+    <button type="button" igxButton="flat" (click)="dialog.close()">閉じる</button>
+  </div>
+</igx-dialog>

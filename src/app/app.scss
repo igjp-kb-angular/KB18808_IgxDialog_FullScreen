@@ -1,0 +1,23 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--ig-surface-500, #fff);
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dialog-content {
+  min-width: 280px;
+  padding-block: 0.5rem;
+}
